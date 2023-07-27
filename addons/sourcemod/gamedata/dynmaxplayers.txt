@@ -1,0 +1,51 @@
+/*
+ * Copyright (C) 2023  Mikusch
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+"Games"
+{
+	"tf"
+	{
+		"Signatures"
+		{
+			"maxplayers"
+			{
+				"library"	"engine"
+				"linux"		"@_ZL10maxplayersRK8CCommand"
+				"windows"	"\x55\x8B\xEC\x8B\x45\x08\x83\x38\x02\x74\x2A\xFF\x35\x2A\x2A\x2A\x2A\x68\x2A\x2A\x2A\x2A\xFF\x15\x2A\x2A\x2A\x2A\x83\xC4\x08\x5D\xC3\x83\x3D\x2A\x2A\x2A\x2A\x02"
+			}
+		}
+		"MemPatches"
+		{
+			"maxplayers::AllowChangeWhileRunning"
+			{
+				"signature"	"maxplayers"
+				"linux"
+				{
+					"offset"	"3Dh"
+					"verify"	"\x75\x29"
+					"patch"		"\x90\x90"
+				}
+				"windows"
+				{
+					"offset"	"28h"
+					"verify"	"\x7C\x0E"
+					"patch"		"\xEB\x0E"
+				}
+			}
+		}
+	}
+}
